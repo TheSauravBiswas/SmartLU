@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+body{
+    background: #333;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.navbar{
+    background: #222;
+}
+
+.label{
+    float: right;
+}
+
+.container h1{
+    color: #fff;
+    text-align: center;
+}
+
+.admissionform{
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
