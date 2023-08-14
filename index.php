@@ -10,6 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <script src="jquery-slim.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -53,7 +58,7 @@
     </div>
     </nav>
     <div class="container">
-        <h1 class="pt-4">Application</h1>
+        <h1 class="pt-4">SmartLU</h1>
         <div class="pt-2">
         <table class="table table-striped table-dark ">
             <thead>
