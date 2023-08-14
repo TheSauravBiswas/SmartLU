@@ -1,3 +1,4 @@
+<?=include "admissionAction.php";?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,32 +58,32 @@
         </form>
     </div>
     </nav>
+
     <div class="container">
-        <h1 class="pt-4">SmartLU</h1>
-        <div class="pt-2">
-        <table class="table table-striped table-dark ">
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th scope="col">Applications</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                <th scope="row">1</th>
-                <td><a href="admission.php">Application for Undergraduate Admission</a></td>
-                </tr>
-                <tr>
-                <th scope="row">2</th>
-                <td>Application for Graduate Admission</td>
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">
+                <?php if (isset($_GET['success'])) { ?>
+                <div class="alert alert-success" role="alert">
+                <?php echo $_GET['success']; ?>
+                </div>
+                <?php } ?>
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted">Login with your HSC registration number and password.</h6>
+            <p class="card-text">
+                <table><tr>
+                <td>Your HSC registraion number</td>
+                <td>: <?php echo $reg; ?></td>
                 </tr>
                 <tr>
-                <th scope="row">3</th>
-                <td>Application for Makeup Examinations</td>
-                </tr>
-            </tbody>
-        </table>
+                    <td>Password</td>
+                    <td>: <?php echo $password; ?></td>
+                </tr></table> 
+            </p>
+            <a href="login.php" class="card-link">Log in</a>
+            <!--a href="#" class="card-link">Another link</a-->
         </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" 

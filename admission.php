@@ -20,17 +20,21 @@
 </head>
 
 <body>
-
 <?php
+include 'config.php';
 
 $programErr = $nameErr = $fnameErr = $mnameErr = $permanentErr = $presentErr = $numberErr = $emailErr = $gnumberErr = 
 $dobErr = $genderErr = $regErr = $sscyearErr = $sscboardErr = $sscinsErr = $sscgroupErr = $sscrollErr = $sscgpaErr = 
 $hscyearErr = $hscboardErr = $hscinsErr = $hscgroupErr = $hscrollErr = $hscgpaErr = $waiverErr = $waiverimgErr = $dpErr = $gdpErr = 
-$ssctransErr = $hsctransErr = $testimonialErr = $gidcardErr = $bcErr = "";
+$ssctransErr = $hsctransErr = $testimonialErr = $gidcardErr = $bcErr = $select=$results=$regi= "";
 
 $fileType=$fileSize=$allowed=$maxFileSize=$tempFilePath=$width=$height=$rWidth=$rHeight="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $regi = $_POST["reg"];
+    $select = " SELECT * FROM undergrad WHERE reg = '$regi' ";
+    $results = mysqli_query($conn, $select);
 
     if ($_POST["program"]=="Choose...") {
         $programErr = "* name of the program is required";
@@ -67,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $presentErr="* name is required";
     }elseif(strlen($_POST["present"]) > 100) {
         $presentErr="* maximum 100 characters";
-    }elseif(!preg_match("/^[a-zA-Z.\-:\s]+$/", $_POST["present"])){
+    }elseif(!preg_match("/^[a-zA-Z0-9\s\.,\-:\/]+$/", $_POST["present"])){
         $presentErr="* invalid address format";
     }
     elseif(empty($_POST["number"])){
@@ -95,7 +99,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     elseif($_POST["gender"]=="Choose...") {
         $genderErr = "* gender is required";
     }
-    elseif(empty($_POST["reg"])){
+    elseif(mysqli_num_rows($results) > 0){
+        $regErr="* already applied";
+    }elseif(empty($_POST["reg"])){
         $regErr="* registraion no. is required";
     }elseif(strlen($_POST["reg"]) > 10) {
         $regErr="* maximum 10 digits";
@@ -304,7 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
     else{
-        header("Location:admissionAction.php");
+        header('location:admissionAction.php');
     }
 }
 
@@ -314,10 +320,7 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-
 ?>
-
-
 <nav class="navbar navbar-expand-lg navbar-dark ">
     <div class="navbar-brand" href="#">
         <div><img src="logo-white.png" alt="LU logo" height="40">
@@ -359,7 +362,12 @@ function test_input($data) {
 
     <div class="container">
     <h2 class="pt-3">Undergraduate Admission Form</h2>
-        <form class="admissionform my-3" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method ="post" enctype='multipart/form-data'>
+        <?php if (isset($_GET['error'])) { ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $_GET['error']; ?>
+        </div>
+        <?php } ?>
+        <form class="admissionform my-3" action="admissionAction.php" method ="post" enctype='multipart/form-data'>
             <div class="form-group">
                 <label for="">Name of the Program</label>
                 <select id="" class="form-select" aria-label="Default select example" name="program">
@@ -717,7 +725,7 @@ function test_input($data) {
 
             <p><table class="text-danger font-weight-bold "><tr>
                 <td class="align-top">[NB: </td>
-                <td>1. Applicant's and Guardian's photo must be 300x300 and Colored.
+                <td>1. Applicant's and Guardian's photo must be 300x300 and Colored.</td>
                 </tr>
                 <tr>
                     <td></td>
