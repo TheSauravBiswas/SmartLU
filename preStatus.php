@@ -1,10 +1,10 @@
-<?=include "admissionAction.php";?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>LU | Application</title>
+    <title>LU | Confirmation</title>
     <link rel="icon" type="image/x-icon" href="logo-white.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" 
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -17,6 +17,49 @@
     <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 
     <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+        body{
+            background: #EDEADE;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        .navbar{
+            background: #333;
+        }
+        .label{
+            float: right;
+        }
+        .container h1, h2{
+            text-align: center;
+        }
+        .card{
+            border: none;
+            background: #EDEADE;
+            border-radius: 10px;
+            cursor: pointer;
+            -webkit-transform-duration: 0.3s;
+            transition-duration: 0.3s;
+            -webkit-transition-property: transform;
+            transition-property: transform;
+        }
+        .card-img-top{
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .card-body{
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+        .card:hover {
+            -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+        }
+        .card:active {
+            -webkit-transform: scale(.9);
+            transform: scale(.9);
+        }
+    </style>
 </head>
 
 <body>
@@ -32,9 +75,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.php">Home</a>
         </li>
-        <li class="nav-item">
+        <!--li class="nav-item">
             <a class="nav-link" href="#">Link</a>
         </li>
         <li class="nav-item dropdown">
@@ -50,18 +93,19 @@
         </li>
         <li class="nav-item">
             <a class="nav-link disabled" href="#">Disabled</a>
-        </li>
+        </li-->
         </ul>
         <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
+        <a href="login.php"><button class="btn btn-outline-success my-2 my-sm-0">login</button>
     </div>
     </nav>
 
     <div class="container">
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
+    <div class="row pt-2 d-flex justify-content-center">
+    <div class="card col-md-12 mb-4" style="width: 36rem;">
+        <div class="card-body bg-dark">
             <h5 class="card-title">
                 <?php if (isset($_GET['success'])) { ?>
                 <div class="alert alert-success" role="alert">
@@ -69,18 +113,11 @@
                 </div>
                 <?php } ?>
             </h5>
-            <h6 class="card-subtitle mb-2 text-muted">Login with your HSC registration number and password.</h6>
+            <h6 class="card-subtitle mb-2 text-muted">View your application status.</h6>
             <p class="card-text">
-                <table><tr>
-                <td>Your HSC registraion number</td>
-                <td>: <?php echo $reg; ?></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td>: <?php echo $password; ?></td>
-                </tr></table> 
+                Use your Registration no. and the password sent to your email address to access.
             </p>
-            <a href="login.php" class="card-link">Log in</a>
+            <a href="uStatusLogin.php" class="btn btn-primary stretched-link">Application Status</a>
             <!--a href="#" class="card-link">Another link</a-->
         </div>
     </div>
