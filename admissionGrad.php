@@ -513,13 +513,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $mail->IsSMTP();
             $mail->SMTPAuth = true;
-            $mail->Host = "smtp.zoho.com";
-            $mail->SMTPSecure = 'ssl';
-            $mail->Port = '465';
-            $mail->Username ="sbis177@zohomail.com";
-            $mail->Password ="Monster!8";
-
-            $mail->From = "sbis177@zohomail.com";
+            $mail->Host = ""; //Host Name of Sender's Email
+            $mail->SMTPSecure = ''; //Secure Connection Type of Sender's Email
+            $mail->Port = ''; //SMTP Port of Sender's Email
+            $mail->Username =""; //Sender's Email Address
+            $mail->Password =""; //Password of Sender's Email
+        
+            $mail->From = ""; //Sender's Email Address
             $mail->FromName = "Leading University, Sylhet";
             $mail->AddAddress($email, $name);
             $mail->IsHTML(true);
